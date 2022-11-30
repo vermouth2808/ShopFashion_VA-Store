@@ -1,0 +1,178 @@
+﻿@*@model List<ShopFashion_VA_Store.Models.tbl_SanPham>*@
+@{
+    ViewBag.Title = "_MainLayOut";
+    ViewBag.user = Session["FullName"];
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/tool/style/main.css"><!-- CSS only --><!-- JavaScript Bundle with Popper -->
+    <link rel="stylesheet" href="~/tool/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>VA STORE</title>
+</head>
+<body>
+
+    <div id="main">
+        <!-- ------------------------------------HEADERS-------------------------------- -->
+
+        <header>
+            <div class="menu">
+                <li>
+                    <p style="font-size:14px;margin-right:18px">NỮ</p>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =0})"> ÁO</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =1})"> ÁO KHOÁC</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =2})"> QUẦN & JUMPSUIT</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =3})">GIÀY & DÉP </a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =4})">ĐẦM</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =5})">ĐỒ LÓT</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =6})">SET ĐỒ ĐỒNG BỘ</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =7})">PHỤ KIỆN</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p style="font-size:14px;margin-right:18px">NAM</pstyle="font-size:14px;margin-right:12px">
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =8})">ÁO</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =9})">ÁO KHOÁC</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP = 10})">QUẦN NAM</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =11})">GIÀY & DÉP</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =12})">PHỤ KIỆN</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p style="font-size:14px;margin-right:18px">BÉ GÁI</p>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =13})">ÁO BÉ GÁI</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =14})">QUẦN BÉ GÁI</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =15})">VÁY BÉ GÁI</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =16})">PHỤ KIỆN BÉ GÁI</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p style="font-size:14px;margin-right:18px">BÉ TRAI</p>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =17})">ÁO BÉ TRAI</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =18})">QUẦN BÉ TRAI</a><br />
+                            <a href="@Url.Action("ListProducts",new {idLoaiSP =19})">PHỤ KIỆN BÉ TRAI</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="logo">
+                <a href="@Url.Action("Index","Shop")"><img style="width: 120px; margin-left: 65px; margin-top: -20px; " src="~/tool/image/logo.jpg" alt=""></a>
+            </div>
+            <div class="others">
+                <li>
+                    <form class="form_search" action="/Shop/searchProduct">
+                        <input type="search" id="search" name="search" placeholder="Search here ...">
+                        <button type="submit" class="fa fa-search"></button>
+                    </form>
+                </li>
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @ViewBag.user
+                            <img style="width:28px" class="img-profile rounded-circle"
+                                 src="~/Areas/Admin/Resources/img/undraw_profile.svg">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("Logout","Shop")">
+                                    <span style="padding-left:28%" class="mr-2 d-none d-lg-inline text-gray-600 small">Logout</span>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="@Url.Action("Shopping","Shop")"><i class="fa-solid fa-cart-shopping"></i></a>
+                <p id="checkout_item" style="background: #e96a76; border-radius: 50%; width: 18px; height: 18px; position: absolute; margin: -33px 12px  3px 12px;
+                display: flex; justify-content: center; font-weight: 700; ">0</p>
+                </li>
+
+            </div>
+        </header>
+        <!-- ------------------------------------------------------------END------------------------------------------------------------ -->
+        @RenderBody();
+
+        <!-- ---------------------------------------FOOTER-------------------------------- -->
+
+        <footer>
+            <div class="img_footer">
+                <img class="sub-img-footer" src="~/tool/image/logo.png" alt="">
+                <img class="sub-img-footer" src="~/tool/image/logo_footer.png" alt="">
+                <img class="sub-img-footer" src="~/tool/image/img-congthuong.png" alt="">
+            </div>
+            <div class="content-footer">
+                <p>Công ty cổ phần Dự Kim với số đăng kí kinh doanh:09999213</p>
+                <p><b>Địa chỉ đăng kí:</b>Tổ dân phố,Phường 12,Quận 12,Việt Nam</p>
+                <p><b>Số điện thoại:</b>09237162222</p>
+            </div>
+            <div class="icon-footer">
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-google"></i></a>
+            </div>
+
+            <div class="hotline-footer">
+                <p>HOTLINE:028080297</p>
+            </div>
+            <hr style="position:absolute " width="1500px" size="5px" align="center" color="#e7e8e9">
+            <p class="text_bottom_footer">©VA STORE All rights reserved</p>
+        </footer>
+    </div>
+    @*Jquery*@
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            slidesPerGroup: 5,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <script>
+
+        $('#sorting').change(() => {
+            const value = $('#sorting').val();
+            window.location.href = "/Shop/ListProducts?sort=" + value;
+        });
+    </script>
+   
+    <script src="~/tool/Script/jsShopping.js"></script>
+    <script src="~/tool/Script/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopOnlineFashionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_ChiTietHoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+      <PropertyRef Name="IDSanPham" />
+    </Key>
+    <Property Name="SoHD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Gia" Type="int" />
+    <Property Name="ThanhTien" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_HoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+    </Key>
+    <Property Name="SoHD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDUser" Type="int" Nullable="false" />
+    <Property Name="NgayHD" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="tb_KhachHang">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhach" Type="nvarchar" MaxLength="150" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="50" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_Slider">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Hinh" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_User">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Menu">
+    <Key>
+      <PropertyRef Name="IDLoaiSP" />
+    </Key>
+    <Property Name="IDLoaiSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiSP" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoiTuong" Type="nvarchar" MaxLength="50" />
+    <Property Name="SP" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_SanPham">
+    <Key>
+      <PropertyRef Name="IDSanPham" />
+    </Key>
+    <Property Name="IDSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSanPham" Type="nvarchar(max)" />
+    <Property Name="Gia" Type="int" />
+    <Property Name="TrangThai" Type="int" />
+    <Property Name="LuotThich" Type="int" />
+    <Property Name="HinhChinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hinh1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hinh2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hinh3" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="SoLuongTrongKho" Type="int" />
+    <Property Name="IDLoaiSP" Type="int" />
+  </EntityType>
+  <Association Name="FK_tbl_SanPham_tbl_Menu">
+    <End Role="tbl_Menu" Type="Self.tbl_Menu" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_SanPham" Type="Self.tbl_SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Menu">
+        <PropertyRef Name="IDLoaiSP" />
+      </Principal>
+      <Dependent Role="tbl_SanPham">
+        <PropertyRef Name="IDLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopOnlineFashionModelStoreContainer">
+    <EntitySet Name="tb_ChiTietHoaDon" EntityType="Self.tb_ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_HoaDon" EntityType="Self.tb_HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_KhachHang" EntityType="Self.tb_KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_Slider" EntityType="Self.tb_Slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_User" EntityType="Self.tb_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SanPham" EntityType="Self.tbl_SanPham" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_SanPham_tbl_Menu" Association="Self.FK_tbl_SanPham_tbl_Menu">
+      <End Role="tbl_Menu" EntitySet="tbl_Menu" />
+      <End Role="tbl_SanPham" EntitySet="tbl_SanPham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

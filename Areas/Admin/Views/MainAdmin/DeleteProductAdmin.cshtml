@@ -1,0 +1,25 @@
+﻿@model ShopFashion_VA_Store.Models.tbl_SanPham
+@{
+    ViewBag.Title = "DeleteProductAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<form action="/Admin/MainAdmin/DeleteProductAdmin/@Model.IDSanPham" method="post">
+   
+    <input type="hidden" name="IDSanPham" value="@Model.IDSanPham" />
+
+    <table class="table">
+        <tr>
+            <td>@Model.IDSanPham</td>
+            <td>@Model.TenSanPham</td>
+            <td>@Model.Gia</td>
+            <td>@Model.SoLuongTrongKho</td>
+            <td>@Model.IDLoaiSP</td>
+            <td><img src="~/tool/image/favorite products/@Model.HinhChinh" style="width:120px;height:180px" alt="Hình sản phẩm"></td>
+
+        </tr>
+
+    </table>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Admin/MainAdmin/QLSanPham" class="btn btn-danger">Cancel</a>
+</form>

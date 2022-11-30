@@ -1,0 +1,24 @@
+﻿@model ShopFashion_VA_Store.Models.tb_User
+
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+
+<form action="/Admin/MainAdmin/DeleteUser/@Model.IDUser" method="post">
+
+    <input type="hidden" name="IDSanPham" value="@Model.IDUser" />
+
+    <table class="table">
+        <tr>
+            <td>@Model.IDUser</td>
+            <td>@Model.FirstName</td>
+            <td>@Model.Email</td>
+            
+        </tr>
+
+    </table>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Admin/MainAdmin/QLUser" class="btn btn-danger">Cancel</a>
+</form>

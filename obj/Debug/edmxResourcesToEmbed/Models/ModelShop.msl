@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDShopModelStoreContainer" CdmEntityContainer="BDShopEntities">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="BDShopModel.Products">
+        <MappingFragment StoreEntitySet="Blogs">
+          <ScalarProperty Name="ProductId" ColumnName="BlogId" />
+          <ScalarProperty Name="ProductName" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="BDShopModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

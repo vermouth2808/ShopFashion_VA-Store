@@ -1,0 +1,62 @@
+﻿
+
+@model PagedList.IPagedList<ShopFashion_VA_Store.Models.tb_User>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "QLUser";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<link href="~/Areas/Admin/Resources/css/AdminNhaSanXuat.css" rel="stylesheet" type="text/css" />
+
+<div class="container">
+
+  
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered" id="editableTable">
+                <thead>
+                    <tr>
+                        <th>ID USER</th>
+                        <th>Tên người dùng</th>
+                        <th>Email</th>
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr data-id="1">
+                            <td>@item.IDUser</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.Email</td>
+
+                            <td>
+                                <a class="button button-small edit" title="Delete" href="@Url.Action("DeleteUser",new {id = item.IDUser})">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            @*@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount*@
+            <li class="page-link">  @Html.PagedListPager(Model, page => Url.Action("QLUser", new { page }))  </li>
+
+
+        </ul>
+    </nav>
+    <br />
+
+
+
+</div>

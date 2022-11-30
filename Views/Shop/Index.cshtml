@@ -1,0 +1,163 @@
+﻿@model List<ShopFashion_VA_Store.Models.tbl_SanPham>
+@{
+    ViewBag.Title = "Index";
+    //var slides = ViewData["Slide"] as ShopFashion_VA_Store.Models.tb_Slider;
+    Layout = "~/Views/Shared/_MainLayOut.cshtml";
+}
+
+
+<style>
+    .wrapper_card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .card {
+        height: 400px;
+        width: 240px;
+        background-color: #202020;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        text-align: center !important;
+    }
+
+        .card::before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: "";
+            top: -50%;
+            background-color: #bababa7d;
+            transform: skewY(345deg);
+            transition: 0.8s ease-in;
+        }
+
+
+        .card:hover::before {
+            top: -70%;
+            transform: skewY(390deg);
+        }
+
+        .card .image {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+            .card .image img {
+                max-width: 100%;
+                transition: 0.6s ease-in;
+            }
+
+        .card:hover .image img {
+            width: 80%;
+        }
+
+    .about-product {
+        position: absolute;
+        color: #fff;
+        bottom: -50px !important;
+        text-align: center;
+        left: 18%;
+        transition: 0.6s ease-in;
+    }
+
+
+    .card:hover .about-product {
+        bottom: 20px !important;
+    }
+
+
+    .buy-now {
+        color: #fff;
+        background-color: #ef5350 !important;
+        border-color: #ef5350 !important;
+        width: 160px;
+        margin-top: 20px;
+    }
+
+
+        .buy-now:focus {
+            box-shadow: none;
+        }
+
+        .buy-now:hover {
+            color: #fff;
+            background-color: #e84040 !important;
+            border-color: #e84040 !important;
+        }
+
+</style>
+<!-- ---------------------------------------SLIDER -------------------------------- -->
+<section id="slider">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (var item in ViewBag.Slide)
+            {
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="~/tool/image/slider/@item.Hinh" class="d-block w-100" alt="...">
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<!-- ---------------------------------------favorite products-------------------------------- -->
+<h2 class="text-title">FAVORITE PRODUCTS</h2>
+<div class="swiper mySwiper container">
+    <div class="swiper-wrapper ">
+        @foreach (var item in Model)
+        {
+
+            @*<div class="swiper-slide card" style="width: 18rem;">
+                <a href="@Url.Action("Detail",new {id = item.IDSanPham})"><img src="~/tool/image/favorite products/@item.HinhChinh" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                    <h5 class="card-title">@item.TenSanPham</h5>
+                    <i class="fa-solid fa-heart"></i>
+                    <p class="card-price">@Html.DisplayFor(row=>item.Gia)</p>
+                    <a href="#" class="addToCart btn btn-primary" data-id="@item.IDSanPham">MUA NGAY</a>
+                </div>
+            </div>*@
+
+
+        <div class="swiper-slide wrapper_card">
+
+            <div class="card text-center">
+
+       
+                    <a class="image" href="@Url.Action("Detail",new {id = item.IDSanPham})"> 
+                    <img src="~/tool/image/favorite products/@item.HinhChinh" width="300">
+                    </a>
+             
+                <div class="about-product ">
+
+                    <h3 style="font-size:10px">@item.TenSanPham</h3>
+                    <h4 style="font-size:12px">@Html.DisplayFor(row => item.Gia)</h4>
+
+                    <button class="addToCart btn btn-success buy-now" data-id="@item.IDSanPham">MUA NGAY</button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+
+</div>

@@ -1,0 +1,87 @@
+﻿@model List<ShopFashion_VA_Store.Models.tbl_SanPham>
+
+@{
+    ViewBag.Title = "searchProduct";
+    Layout = "~/Views/Shared/_MainLayOut.cshtml";
+}
+
+@*@model PagedList.IPagedList<ShopFashion_VA_Store.Models.tbl_SanPham>
+    @using PagedList.Mvc;*@
+
+
+
+
+
+<section class="cartegory">
+    <div class="cartegory_heading">
+
+
+    </div>
+
+    <div class="body_list-products">
+
+
+        <div class="container-right">
+
+
+            <div class="cartegory-right">
+
+                <div class="cartegory-top-right">
+                    <div class="cartegory_right-top-item">
+                        <p>CÁC SẢN PHẨM TÌM ĐƯỢC</p>
+                    </div>
+                    <form action="/Shop/ListProducts" method="post" class="dropdown">
+                        <div class="form-group mb-3">
+                            <select class="custom-select tm-select-accounts validate"
+                                    name="sort"
+                                    id="sort" required>
+                                <option selected>Sắp xếp theo giá</option>
+                                <option value=0>Từ thấp đến cao</option>
+                                <option value=1>Từ cao đến thấp</option>
+
+                            </select>
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="cartegory_sub-list-products">
+
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide card" style="width: 19rem;position:inherit">
+                        <a href="@Url.Action("Detail",new {id = item.IDSanPham})"><img src="~/tool/image/favorite products/@item.HinhChinh" class="card-img-top" alt="..."></a>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TenSanPham</h5>
+                            <i class="fa-solid fa-heart"></i>
+                            <p class="card-price">@Html.DisplayFor(row => item.Gia)</p>
+                            <a href="#" class="btn btn-primary">MUA NGAY</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- ---------------------------PAGINATION------------------------ -->
+    @*<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+
+
+                <li class="page-link">  @Html.PagedListPager(Model, page1 => Url.Action("ListProducts", new { page1 }))  </li>
+
+
+            </ul>
+        </nav>
+        <br />*@
+</section>
